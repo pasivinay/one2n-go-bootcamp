@@ -2,24 +2,17 @@ package basics
 
 import (
 	"fmt"
-	_ "math"
+	"math"
 )
 
 // This function takes a int and returns whether it's even(true) or odd(false).
 
-func EvenOdd() bool {
-	var n int
-	fmt.Print("Input: ")
-	fmt.Scan(&n)
-	// fmt.Printf("%v",n%2==0)
+func EvenOdd(n int) bool {
 	return n%2 == 0
 }
 
 // This function takes a int and return a multiplication table for it.
-func GetTable() string {
-	var n int
-	fmt.Print("Enter a number for a table :")
-	fmt.Scanf("%v", &n)
+func Table(n int) string {
 	table := ""
 	for i := 1; i < 11; i++ {
 		table = table + fmt.Sprintf("%v x %v = %v\n", n, i, n*i)
@@ -31,10 +24,7 @@ func GetTable() string {
 
 // This function return sum of n numbers.
 
-func Sum() int {
-	var n int
-	fmt.Print("Enter a number for sum of n numbers :")
-	fmt.Scanf("%v", &n)
+func Sum(n int) int {
 	sum := 0
 	for i := 1; i <= n; i++ {
 		sum += i
@@ -45,32 +35,48 @@ func Sum() int {
 
 // This function swaps two numbers from it's variables
 
-func Swap() {
-	var a, b, c int
-
-	fmt.Println("Input:")
-	fmt.Scanf("%v %v", &a, &b)
-
-	fmt.Println("Numbers before swapping: \n a =", a, "\n b =", b)
-
-	c = a
+func Swap(a, b int) (int, int) {
+	c := a
+	// swapping numbers
 	a = b
 	b = c
 
-	fmt.Println("Numbers after swapping:\n a =", a, "\n b =", b)
+	return a, b
 }
 
-// This function takes 
+// This function takes two integers and find the number closest to n and divisible by m.
 
-// func ClosestNumber() {
-// 	closest := math.MaxInt
-// 	var n, m int
-// 	fmt.Scanf("%v %v", &n, &m)
-// 	for i := n - m; i <= n+m; i++ {
-// 		fmt.Println(closest, i, i%m)
-// 		if i%m == 0 && (n-i) >= (n-closest) && math.Abs(float64(closest)) >= math.Abs(float64(closest)) {
-// 			closest = i
-// 			fmt.Println(closest, i)
-// 		}
-// 	}
-// }
+func abs(a int) int {
+	return -a
+}
+
+func ClosestNumber(n, m int) int {
+	closest := 0
+	min_diff := int(math.MaxInt)
+
+	for i := n - m; i <= n+m; i++ {
+		if i%m == 0 {
+			diff := abs(n - i)
+
+			if diff < min_diff || (diff == min_diff && abs(i) > abs(closest)) {
+				closest = i
+				min_diff = diff
+			}
+		}
+	}
+
+	return closest
+}
+
+// This function takes a number on a dice face and return the number on the opposite face.
+
+func OppOfDice(n int) int {
+	if n < 1 || n > 7 {
+		return -1
+	}
+	return (7 - n)
+}
+
+func NthTermOfAP(a, b, n int) int {
+	return (a + (n-1)*(b-a))
+}
