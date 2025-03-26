@@ -111,24 +111,24 @@ func TestOppOfDice(t *testing.T) {
 }
 
 func TestNthTermOfAP(t *testing.T) {
-    t.Run("Get the number on the opposite side of the dice with face number 3", func(t *testing.T) {
-		got := NthTermOfAP(1,2,6) // 1, 2, 3, 4, 5 ,6
+	t.Run("Get the number on the opposite side of the dice with face number 3", func(t *testing.T) {
+		got := NthTermOfAP(1, 2, 6) // 1, 2, 3, 4, 5 ,6
 		want := 6
 
 		if got != want {
 			t.Errorf("Expected : %v , got : %v", want, got)
 		}
 	})
-    t.Run("Get the number on the opposite side of the dice with face number 3", func(t *testing.T) {
-		got := NthTermOfAP(2,5,6) //2, 5, 8, 11, 14, 17
+	t.Run("Get the number on the opposite side of the dice with face number 3", func(t *testing.T) {
+		got := NthTermOfAP(2, 5, 6) //2, 5, 8, 11, 14, 17
 		want := 17
 
 		if got != want {
 			t.Errorf("Expected : %v , got : %v", want, got)
 		}
 	})
-    t.Run("Get the number on the opposite side of the dice with face number 3", func(t *testing.T) {
-		got := NthTermOfAP(-2,-4,8) //-2, -4, -6, -8, -10, -12, -14, -16
+	t.Run("Get the number on the opposite side of the dice with face number 3", func(t *testing.T) {
+		got := NthTermOfAP(-2, -4, 8) //-2, -4, -6, -8, -10, -12, -14, -16
 		want := -16
 
 		if got != want {

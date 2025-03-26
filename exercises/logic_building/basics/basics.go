@@ -5,13 +5,12 @@ import (
 	"math"
 )
 
-// This function takes a int and returns whether it's even(true) or odd(false).
-
+// EvenOdd takes a int and returns whether it's even(true) or odd(false).
 func EvenOdd(n int) bool {
 	return n%2 == 0
 }
 
-// This function takes a int and return a multiplication table for it.
+// Table takes a int and return a multiplication table for it.
 func Table(n int) string {
 	table := ""
 	for i := 1; i < 11; i++ {
@@ -22,8 +21,7 @@ func Table(n int) string {
 	return table
 }
 
-// This function return sum of n numbers.
-
+// Sum return sum of n numbers.
 func Sum(n int) int {
 	sum := 0
 	for i := 1; i <= n; i++ {
@@ -33,8 +31,7 @@ func Sum(n int) int {
 	return sum
 }
 
-// This function swaps two numbers from it's variables
-
+// Swap swaps two numbers from it's variables
 func Swap(a, b int) (int, int) {
 	c := a
 	// swapping numbers
@@ -44,12 +41,12 @@ func Swap(a, b int) (int, int) {
 	return a, b
 }
 
-// This function takes two integers and find the number closest to n and divisible by m.
-
+// abs takes two integers and find the number closest to n and divisible by m.
 func abs(a int) int {
 	return -a
 }
 
+// ClosestNumber takes two intergers n and m, and finds the absolute number closest to n and divisible by m
 func ClosestNumber(n, m int) int {
 	closest := 0
 	min_diff := int(math.MaxInt)
@@ -68,8 +65,7 @@ func ClosestNumber(n, m int) int {
 	return closest
 }
 
-// This function takes a number on a dice face and return the number on the opposite face.
-
+// OppOfDice takes a number on a dice face and return the number on the opposite face.
 func OppOfDice(n int) int {
 	if n < 1 || n > 7 {
 		return -1
@@ -77,6 +73,7 @@ func OppOfDice(n int) int {
 	return (7 - n)
 }
 
+// NthTermofAP takes two consecutive numbers of an AP and return the nth term of that AP
 func NthTermOfAP(a, b, n int) int {
 	return (a + (n-1)*(b-a))
 }
