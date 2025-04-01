@@ -43,7 +43,10 @@ func Swap(a, b int) (int, int) {
 
 // abs takes two integers and find the number closest to n and divisible by m.
 func abs(a int) int {
-	return -a
+	if a < 0 {
+		return -a
+	}
+	return a
 }
 
 // ClosestNumber takes two intergers n and m, and finds the absolute number closest to n and divisible by m
