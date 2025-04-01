@@ -1,138 +1,143 @@
 package basics
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestEvenOdd(t *testing.T) {
-	t.Run("Check whether the 4 is even or odd", func(t *testing.T) {
-		got := EvenOdd(4)
-		want := true
+	tests := []struct {
+		name  string
+		input int
+		want  bool
+	}{
+		{"Even number", 4, true},
+		{"Odd number", 5, false},
+		{"Negative even number", -10, true},
+	}
 
-		if got != want {
-			t.Errorf("The answer is %v but we got %v", want, got)
-		}
-	})
-	t.Run("Check whether the 5 is even or odd", func(t *testing.T) {
-		got := EvenOdd(5)
-		want := false
-
-		if got != want {
-			t.Errorf("The answer is %v but we got %v", want, got)
-		}
-	})
-	t.Run("Check whether the -10 is even or odd", func(t *testing.T) {
-		got := EvenOdd(-10)
-		want := true
-
-		if got != want {
-			t.Errorf("The answer is %v but we got %v", want, got)
-		}
-	})
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := EvenOdd(tt.input)
+			if got != tt.want {
+				t.Errorf("Expected %v, got %v", tt.want, got)
+			}
+		})
+	}
 }
 
 func TestTable(t *testing.T) {
-	t.Run("Get the table of 4", func(t *testing.T) {
-		got := Table(4)
-		want := "4 x 1 = 4\n4 x 2 = 8\n4 x 3 = 12\n4 x 4 = 16\n4 x 5 = 20\n4 x 6 = 24\n4 x 7 = 28\n4 x 8 = 32\n4 x 9 = 36\n4 x 10 = 40\n"
+	tests := []struct {
+		name  string
+		input int
+		want  string
+	}{
+		{"Multiplication table of 4", 4, "4 x 1 = 4\n4 x 2 = 8\n4 x 3 = 12\n4 x 4 = 16\n4 x 5 = 20\n4 x 6 = 24\n4 x 7 = 28\n4 x 8 = 32\n4 x 9 = 36\n4 x 10 = 40\n"},
+	}
 
-		if got != want {
-			t.Errorf("The answer is %v but we got %v", want, got)
-		}
-	})
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := Table(tt.input)
+			if got != tt.want {
+				t.Errorf("Expected %v, got %v", tt.want, got)
+			}
+		})
+	}
 }
 
 func TestSum(t *testing.T) {
-	t.Run("Get the sum of numbers 1 to 9", func(t *testing.T) {
-		got := Sum(9)
-		want := 45
+	tests := []struct {
+		name  string
+		input int
+		want  int
+	}{
+		{"Sum from 1 to 9", 9, 45},
+		{"Sum from 1 to 15", 15, 120},
+	}
 
-		if got != want {
-			t.Errorf("The answer is %v but we got %v", want, got)
-		}
-	})
-	t.Run("Get the sum of numbers 1 to 15", func(t *testing.T) {
-		got := Sum(15)
-		want := 120
-
-		if got != want {
-			t.Errorf("The answer is %v but we got %v", want, got)
-		}
-	})
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := Sum(tt.input)
+			if got != tt.want {
+				t.Errorf("Expected %v, got %v", tt.want, got)
+			}
+		})
+	}
 }
 
 func TestSwap(t *testing.T) {
-	t.Run("Swap the numbers", func(t *testing.T) {
-		a, b := Swap(5, 4)
-		c, d := 4, 5
+	tests := []struct {
+		name         string
+		a, b         int
+		wantA, wantB int
+	}{
+		{"Swap 5 and 4", 5, 4, 4, 5},
+	}
 
-		if b != d && a != c {
-			t.Errorf("Expected a: %v b: %v, got a: %v b: %v", c, d, a, b)
-		}
-	})
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			gotA, gotB := Swap(tt.a, tt.b)
+			if gotA != tt.wantA || gotB != tt.wantB {
+				t.Errorf("Expected a: %v, b: %v, got a: %v, b: %v", tt.wantA, tt.wantB, gotA, gotB)
+			}
+		})
+	}
 }
 
 func TestClosestNumber(t *testing.T) {
-	t.Run("Get the number closest to 13 and divisible by 4", func(t *testing.T) {
-		got := ClosestNumber(13, 4)
-		want := 12
+	tests := []struct {
+		name     string
+		input, d int
+		want     int
+	}{
+		{"Closest to 13 divisible by 4", 13, 4, 12},
+		{"Closest to -15 divisible by 6", -15, 6, -18},
+	}
 
-		if got != want {
-			t.Errorf("Expected : %v , got : %v", want, got)
-		}
-	})
-	t.Run("Get the number closest to -15 and divisible by 6", func(t *testing.T) {
-		got := ClosestNumber(-15, 6)
-		want := -18
-
-		if got != want {
-			t.Errorf("Expected : %v , got : %v", want, got)
-		}
-	})
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := ClosestNumber(tt.input, tt.d)
+			if got != tt.want {
+				t.Errorf("Expected %v, got %v", tt.want, got)
+			}
+		})
+	}
 }
 
 func TestOppOfDice(t *testing.T) {
-	t.Run("Get the number on the opposite side of the dice with face number 5", func(t *testing.T) {
-		got := OppOfDice(5)
-		want := 2
+	tests := []struct {
+		name  string
+		input int
+		want  int
+	}{
+		{"Opposite of dice face 5", 5, 2},
+		{"Opposite of dice face 3", 3, 4},
+	}
 
-		if got != want {
-			t.Errorf("Expected : %v , got : %v", want, got)
-		}
-	})
-	t.Run("Get the number on the opposite side of the dice with face number 3", func(t *testing.T) {
-		got := OppOfDice(3)
-		want := 4
-
-		if got != want {
-			t.Errorf("Expected : %v , got : %v", want, got)
-		}
-	})
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := OppOfDice(tt.input)
+			if got != tt.want {
+				t.Errorf("Expected %v, got %v", tt.want, got)
+			}
+		})
+	}
 }
 
 func TestNthTermOfAP(t *testing.T) {
-	t.Run("Get the number on the opposite side of the dice with face number 3", func(t *testing.T) {
-		got := NthTermOfAP(1, 2, 6) // 1, 2, 3, 4, 5 ,6
-		want := 6
+	tests := []struct {
+		name           string
+		first, diff, n int
+		want           int
+	}{
+		{"Nth term of AP (1,2,6)", 1, 2, 6, 6},
+		{"Nth term of AP (2,5,6)", 2, 5, 6, 17},
+		{"Nth term of AP (-2,-4,8)", -2, -4, 8, -16},
+	}
 
-		if got != want {
-			t.Errorf("Expected : %v , got : %v", want, got)
-		}
-	})
-	t.Run("Get the number on the opposite side of the dice with face number 3", func(t *testing.T) {
-		got := NthTermOfAP(2, 5, 6) //2, 5, 8, 11, 14, 17
-		want := 17
-
-		if got != want {
-			t.Errorf("Expected : %v , got : %v", want, got)
-		}
-	})
-	t.Run("Get the number on the opposite side of the dice with face number 3", func(t *testing.T) {
-		got := NthTermOfAP(-2, -4, 8) //-2, -4, -6, -8, -10, -12, -14, -16
-		want := -16
-
-		if got != want {
-			t.Errorf("Expected : %v , got : %v", want, got)
-		}
-	})
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := NthTermOfAP(tt.first, tt.diff, tt.n)
+			if got != tt.want {
+				t.Errorf("Expected %v, got %v", tt.want, got)
+			}
+		})
+	}
 }
